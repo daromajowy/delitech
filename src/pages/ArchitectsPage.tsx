@@ -1,6 +1,7 @@
 import React from 'react';
 import { PageId } from '../types.ts';
 import { ContactForm } from '../components/ContactForm.tsx';
+import { IMAGES } from '../assets.ts';
 import {
   Compass,
   FileCode2,
@@ -181,7 +182,7 @@ export const ArchitectsPage: React.FC<ArchitectsPageProps> = ({
             <div className="lg:col-span-6">
               <div className="rounded-2xl overflow-hidden border border-[#17211C]/15 shadow-xl aspect-square bg-[#17211C]">
                 <img
-                  src="/src/assets/images/knx_switch_hardware_1790288148780.jpg"
+                  src={IMAGES.knxSwitchHardware}
                   alt="Architektoniczny osprzęt KNX JUNG LS 990"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"

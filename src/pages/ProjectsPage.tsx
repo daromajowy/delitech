@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PageId } from '../types.ts';
+import { IMAGES } from '../assets.ts';
 import { CheckCircle2, ArrowRight, Layers, Sliders, Sun, Building2, Home } from 'lucide-react';
 
 interface ProjectsPageProps {
@@ -19,7 +20,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
       type: 'biuro',
       title: 'Przykładowy zakres: Biuro — światło, sale spotkań i komfort stref',
       subtitle: 'Powierzchnia biurowa fit-out · Warszawa Wola · ~850 m²',
-      image: '/src/assets/images/office_commercial_space_1790288126038.jpg',
+      image: IMAGES.officeCommSpace,
       summary:
         'Architektura systemu obejmująca centralne zarządzanie oświetleniem DALI-2, koordynację 28 klimakonwektorów 4-rurowych, integrację sal konferencyjnych z systemem wideokonferencji oraz automatyczne procedury redukcji poboru mocy po godzinach pracy.',
       zones: [
@@ -36,7 +37,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
       type: 'dom',
       title: 'Przykładowy zakres: Dom — światło, rolety i temperatura',
       subtitle: 'Rezydencja podmiejska · Okolice Warszawy (Konstancin) · ~420 m²',
-      image: '/src/assets/images/residential_residence_1790288136955.jpg',
+      image: IMAGES.residentialResidence,
       summary:
         'Zintegrowana automatyka willi jednorodzinnej. Połączenie sterowania strefami podłogówki, sufitów chłodzących, stacji pogodowej ze śledzeniem pozycji słońca oraz designerskiego osprzętu JUNG w wykończeniu z ciemnego mosiądzu i aluminium.',
       zones: [
@@ -53,7 +54,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
       type: 'apartament',
       title: 'Przykładowy zakres: Apartament penthouse — strefy DALI i zintegrowany HVAC',
       subtitle: 'Apartament z tarasem · Warszawa Śródmieście · ~180 m²',
-      image: '/src/assets/images/knx_switch_hardware_1790288148780.jpg',
+      image: IMAGES.knxSwitchHardware,
       summary:
         'Kompaktowa, wyrafinowana rozdzielnica KNX ukryta w szafie gospodarczej. Pełna eliminacja termostatów ściennych i włączników wieloramkowych na rzecz pojedynczych manipulatorów JUNG LS ZERO zlicowanych ze strukturą tynku.',
       zones: [

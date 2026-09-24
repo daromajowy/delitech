@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageId } from '../types.ts';
 import { ContactForm } from '../components/ContactForm.tsx';
+import { IMAGES } from '../assets.ts';
 import {
   Home,
   Building,
@@ -155,7 +156,7 @@ export const HomesPage: React.FC<HomesPageProps> = ({
               <div className="lg:col-span-6">
                 <div className="rounded-2xl overflow-hidden border border-[#17211C]/15 shadow-xl bg-[#17211C] aspect-[4/3]">
                   <img
-                    src="/src/assets/images/residential_residence_1790288136955.jpg"
+                    src={IMAGES.residentialResidence}
                     alt="Nowoczesna rezydencja z automatyką KNX"
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
@@ -210,7 +211,7 @@ export const HomesPage: React.FC<HomesPageProps> = ({
               <div className="lg:col-span-6">
                 <div className="rounded-2xl overflow-hidden border border-[#17211C]/15 shadow-xl bg-[#17211C] aspect-[4/3]">
                   <img
-                    src="/src/assets/images/knx_switch_hardware_1790288148780.jpg"
+                    src={IMAGES.knxSwitchHardware}
                     alt="Dotykowy osprzęt JUNG w minimalistycznym apartamencie"
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"

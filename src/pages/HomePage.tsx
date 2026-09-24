@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageId } from '../types.ts';
 import { ContactForm } from '../components/ContactForm.tsx';
+import { IMAGES } from '../assets.ts';
 import {
   ArrowRight,
   Sliders,
@@ -116,7 +117,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-[#17211C]/15 bg-[#17211C] aspect-[16/11]">
                 <img
-                  src="/src/assets/images/hero_delitech_architecture_1790288114067.jpg"
+                  src={IMAGES.heroDelitechArch}
                   alt="Nowoczesna przestrzeń biurowa z inteligentną automatyką KNX"
                   className="w-full h-full object-cover opacity-90 transition-transform duration-700 hover:scale-105"
                   referrerPolicy="no-referrer"
@@ -651,7 +652,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div>
                 <div className="aspect-[16/9] relative overflow-hidden bg-[#17211C]">
                   <img
-                    src="/src/assets/images/office_commercial_space_1790288126038.jpg"
+                    src={IMAGES.officeCommSpace}
                     alt="Przykładowy zakres: Biuro — światło, sale spotkań i komfort stref"
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
@@ -701,7 +702,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div>
                 <div className="aspect-[16/9] relative overflow-hidden bg-[#17211C]">
                   <img
-                    src="/src/assets/images/residential_residence_1790288136955.jpg"
+                    src={IMAGES.residentialResidence}
                     alt="Przykładowy zakres: Dom — światło, rolety i temperatura"
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
