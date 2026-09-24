@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-green-deep: #0E4637;
+    --color-lime: #E6F15A;
+    --color-graphite: #17211C;
+    --color-bg: #F7F8F5;
+    --color-green-soft: #CFE3C4;
+    --color-sand: #EDE9DF;
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    scroll-behavior: smooth;
+    background-color: #F7F8F5;
+    color: #17211C;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Manrope', system-ui, sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Architectural grid line background helper */
+.bg-grid-subtle {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(14, 70, 55, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(14, 70, 55, 0.04) 1px, transparent 1px);
+}
+
+.bg-grid-dark-subtle {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(207, 227, 196, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(207, 227, 196, 0.06) 1px, transparent 1px);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

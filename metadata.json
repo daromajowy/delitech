@@ -1,0 +1,6 @@
+{
+  "name": "Delitech Smart Spaces",
+  "description": "Projektowanie, wykonawstwo i programowanie automatyki budynkowej KNX w Warszawie i całej Polsce dla biur komercyjnych, domów oraz apartamentów premium.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
