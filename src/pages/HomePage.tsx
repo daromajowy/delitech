@@ -781,7 +781,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div className="space-y-2 pt-2 text-xs text-[#17211C]/80 font-mono">
                 <p>Bezpośredni kontakt do inżyniera:</p>
                 <p className="font-semibold text-sm text-[#0E4637] font-sans">
-                  tel. +48 22 890 12 34 · kontakt@delitech.pl
+                  tel. +48 22 354 67 76 · kontakt@delitech.pl
                 </p>
                 <p className="text-[11px] text-[#17211C]/60">
                   Biuro: ul. Prosta 68, 00-838 Warszawa (Wola Center)

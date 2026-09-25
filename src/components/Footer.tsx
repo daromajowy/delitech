@@ -145,6 +145,44 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenPrivacy }) => 
                   O firmie &amp; Filozofia
                 </button>
               </li>
+              <li className="pt-2 border-t border-white/10 mt-2">
+                <span className="block text-[10px] font-mono text-[#CFE3C4]/60 uppercase tracking-wider mb-1.5">
+                  Polecane portale branżowe
+                </span>
+              </li>
+              <li>
+                <a
+                  href="https://puszkipodlogowe.pl/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white hover:underline transition-colors flex items-center justify-between group"
+                >
+                  <span>Puszki podłogowe i floorboxy</span>
+                  <span className="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity text-[#E6F15A]">↗</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://mediaporty.com.pl/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white hover:underline transition-colors flex items-center justify-between group"
+                >
+                  <span>Mediaporty i gniazda meblowe</span>
+                  <span className="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity text-[#E6F15A]">↗</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://elektrodesign.pl/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white hover:underline transition-colors flex items-center justify-between group"
+                >
+                  <span>Designerski osprzęt elektroinstalacyjny</span>
+                  <span className="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity text-[#E6F15A]">↗</span>
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -157,7 +195,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenPrivacy }) => 
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#E6F15A] shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-white">ul. Prosta 68</p>
+                  <p className="font-semibold text-white">ul. Konwaliowa 11</p>
                   <p>00-838 Warszawa (Wola Center)</p>
                   <p className="text-[11px] text-[#EDE9DF]/50">Realizacje w całej Polsce</p>
                 </div>
@@ -165,8 +203,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenPrivacy }) => 
 
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#E6F15A] shrink-0" />
-                <a href="tel:+48228901234" className="hover:text-white font-mono">
-                  +48 22 890 12 34
+                <a href="tel:+48223546776" className="hover:text-white font-mono">
+                  +48 22 354 67 76
                 </a>
               </div>
 

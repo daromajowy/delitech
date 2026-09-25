@@ -67,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     },
     {
       id: 'knx',
-      label: 'KNX',
+      label: 'Standard KNX',
     },
     {
       id: 'projects',
@@ -102,10 +102,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>Warszawa · realizacje w całej Polsce</span>
             <span aria-hidden="true">·</span>
             <a
-              href="tel:+48228901234"
+              href="tel:+48223546776"
               className="hover:text-white transition-colors flex items-center gap-1 normal-case font-mono tracking-normal text-xs"
             >
-              +48 22 890 12 34
+              +48 22 354 67 76
             </a>
           </div>
         </div>

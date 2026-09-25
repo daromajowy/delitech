@@ -86,7 +86,7 @@ export const PrivacyModal: React.FC<PrivacyModalProps> = ({
             <div className="space-y-3">
               <h3 className="font-bold text-[#17211C] text-base">1. Administrator Danych Osobowych</h3>
               <p>
-                Administratorem danych osobowych zbieranych za pośrednictwem portalu jest Delitech Smart Spaces z siedzibą przy ul. Prostej 68, 00-838 Warszawa, NIP: 525-28-40-192, e-mail: kontakt@delitech.pl, tel: +48 22 890 12 34.
+                Administratorem danych osobowych zbieranych za pośrednictwem portalu jest Delitech Smart Spaces z siedzibą przy ul. Prostej 68, 00-838 Warszawa, NIP: 525-28-40-192, e-mail: kontakt@delitech.pl, tel: +48 22 354 67 76.
               </p>
 
               <h3 className="font-bold text-[#17211C] text-base pt-2">2. Zakres i Cel Zbierania Danych</h3>
