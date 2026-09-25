@@ -195,8 +195,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenPrivacy }) => 
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#E6F15A] shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-white">ul. Konwaliowa 11</p>
-                  <p>00-838 Warszawa (Wola Center)</p>
+                  <p className="font-semibold text-white">ul. Konwaliowa 7 / lok. 103</p>
+                  <p>03-194 Warszawa</p>
                   <p className="text-[11px] text-[#EDE9DF]/50">Realizacje w całej Polsce</p>
                 </div>
               </div>
