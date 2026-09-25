@@ -96,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
           <div className="flex items-center gap-2">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#E6F15A]" />
-            <span>KNX dla biur, domów i apartamentów</span>
+            <span>Automatyka pomieszczeń dla biur, domów i apartamentów</span>
           </div>
           <div className="flex items-center gap-3 text-[#CFE3C4]">
             <span>Warszawa · realizacje w całej Polsce</span>
