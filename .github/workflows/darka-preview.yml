@@ -1,0 +1,14 @@
+name: Refresh Darka preview
+
+on:
+  push:
+    branches: ['Darka']
+
+permissions: {}
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request preview refresh
+        run: echo 'Publish main, Janka and Darka together through the main Pages workflow.'
