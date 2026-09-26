@@ -5,9 +5,9 @@ on:
     branches: ['main']
   workflow_dispatch:
   workflow_run:
-    workflows: ['Refresh Janka preview']
+    workflows: ['Refresh Janka preview', 'Refresh Darka preview']
     types: [completed]
-    branches: ['Janka']
+    branches: ['Janka', 'Darka']
 
 permissions:
   contents: read
@@ -18,14 +18,13 @@ concurrency:
 
 jobs:
   build:
-    # Keep deployment on main, as required by the existing Pages environment.
     if: github.ref == 'refs/heads/main' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
-        branch: ['main', 'Janka']
+        branch: ['main', 'Janka', 'Darka']
     steps:
       - name: Checkout source branch
         uses: actions/checkout@v4
@@ -45,7 +44,7 @@ jobs:
         run: npm run build
 
       - name: Prevent preview indexing
-        if: matrix.branch == 'Janka'
+        if: matrix.branch != 'main'
         run: sed -i 's|<head>|<head><meta name="robots" content="noindex, nofollow">|' dist/index.html
 
       - name: Save built site
@@ -79,6 +78,12 @@ jobs:
           name: site-Janka
           path: './site/Janka'
 
+      - name: Place Darka preview in its own directory
+        uses: actions/download-artifact@v4
+        with:
+          name: site-Darka
+          path: './site/Darka'
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
@@ -91,7 +96,9 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Show preview address
+      - name: Show preview addresses
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
-        run: printf 'Janka preview - %sJanka/\n' "$PAGE_URL" >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          printf 'Janka preview - %sJanka/\n' "$PAGE_URL" >> "$GITHUB_STEP_SUMMARY"
+          printf 'Darka preview - %sDarka/\n' "$PAGE_URL" >> "$GITHUB_STEP_SUMMARY"
