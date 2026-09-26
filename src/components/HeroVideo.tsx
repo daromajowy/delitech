@@ -4,6 +4,7 @@ import { IMAGES } from '../assets.ts';
 const VIDEO_ID = 'EMsypeEXmUY';
 const CLIP_START = 3;
 const CLIP_END = 23;
+const PLAYER_REVEAL_DELAY = 1000;
 const API_URL = 'https://www.youtube.com/iframe_api';
 
 type YouTubePlayer = {
@@ -13,6 +14,7 @@ type YouTubePlayer = {
   playVideo: () => void;
   pauseVideo: () => void;
   getCurrentTime: () => number;
+  getPlayerState: () => number;
   getIframe: () => HTMLIFrameElement;
   destroy: () => void;
 };
@@ -104,9 +106,30 @@ export const HeroVideo = () => {
     let ready = false;
     let failed = false;
     let player: YouTubePlayer | undefined;
+    let revealTimer: number | undefined;
+
+    const hidePlayer = () => {
+      window.clearTimeout(revealTimer);
+      revealTimer = undefined;
+      // Hide synchronously, before YouTube can paint its pause/replay overlay.
+      host.classList.remove('hero-video__player--playing');
+      setIsPlaying(false);
+    };
+
+    const revealPlayer = (target: YouTubePlayer) => {
+      if (revealTimer !== undefined) return;
+      // YouTube briefly animates its central icon even with controls disabled.
+      revealTimer = window.setTimeout(() => {
+        revealTimer = undefined;
+        if (!disposed && !failed && !document.hidden && target.getPlayerState() === 1) {
+          setIsPlaying(true);
+        }
+      }, PLAYER_REVEAL_DELAY);
+    };
 
     const playClip = (target: YouTubePlayer) => {
       if (disposed || document.hidden) return;
+      hidePlayer();
       target.mute();
       target.setVolume(0);
       // Reload both bounds on EVERY loop: seekTo() would discard endSeconds.
@@ -120,6 +143,7 @@ export const HeroVideo = () => {
     const handleVisibility = () => {
       if (!ready || !player || disposed || failed) return;
       if (document.hidden) {
+        hidePlayer();
         player.pauseVideo();
       } else if (player.getCurrentTime() < CLIP_START || player.getCurrentTime() >= CLIP_END) {
         playClip(player);
@@ -169,32 +193,34 @@ export const HeroVideo = () => {
             if (data === 1) {
               target.mute();
               if (document.hidden) {
+                hidePlayer();
                 target.pauseVideo();
                 return;
               }
-              setIsPlaying(true);
+              revealPlayer(target);
             } else if (data === 0 || (data === 2 && target.getCurrentTime() >= CLIP_END - 0.1)) {
               playClip(target);
-            } else if (data === 2) {
-              setIsPlaying(false);
+            } else {
+              hidePlayer();
             }
           },
           onError: () => {
             if (disposed) return;
             failed = true;
-            setIsPlaying(false);
+            hidePlayer();
           },
           onAutoplayBlocked: () => {
-            if (!disposed) setIsPlaying(false);
+            if (!disposed) hidePlayer();
           },
         },
       });
     }).catch(() => {
-      if (!disposed) setIsPlaying(false);
+      if (!disposed) hidePlayer();
     });
 
     return () => {
       disposed = true;
+      window.clearTimeout(revealTimer);
       document.removeEventListener('visibilitychange', handleVisibility);
       player?.destroy();
       host.replaceChildren();
