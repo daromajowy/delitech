@@ -4,25 +4,34 @@ on:
   push:
     branches: ['main']
   workflow_dispatch:
+  workflow_run:
+    workflows: ['Refresh Janka preview']
+    types: [completed]
+    branches: ['Janka']
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: 'pages'
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
+    # Keep deployment on main, as required by the existing Pages environment.
+    if: github.ref == 'refs/heads/main' && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: ['main', 'Janka']
     steps:
-      - name: Checkout repository
+      - name: Checkout source branch
         uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -32,8 +41,43 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Build production bundle
+      - name: Build site
         run: npm run build
+
+      - name: Prevent preview indexing
+        if: matrix.branch == 'Janka'
+        run: sed -i 's|<head>|<head><meta name="robots" content="noindex, nofollow">|' dist/index.html
+
+      - name: Save built site
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-${{ matrix.branch }}
+          path: './dist'
+          if-no-files-found: error
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Place production at the existing address
+        uses: actions/download-artifact@v4
+        with:
+          name: site-main
+          path: './site'
+
+      - name: Place Janka preview in its own directory
+        uses: actions/download-artifact@v4
+        with:
+          name: site-Janka
+          path: './site/Janka'
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -41,8 +85,13 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: './site'
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Show preview address
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: printf 'Janka preview - %sJanka/\n' "$PAGE_URL" >> "$GITHUB_STEP_SUMMARY"
