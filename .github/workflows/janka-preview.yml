@@ -1,0 +1,15 @@
+name: Refresh Janka preview
+
+on:
+  push:
+    branches: ['Janka']
+
+permissions: {}
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      # Completion triggers deploy.yml on main without changing Pages permissions.
+      - name: Request preview refresh
+        run: echo 'Publish main and Janka together through the main Pages workflow.'
