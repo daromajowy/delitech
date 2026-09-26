@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageId } from '../types.ts';
 import { ContactForm } from '../components/ContactForm.tsx';
+import { HeroVideo } from '../components/HeroVideo.tsx';
 import { IMAGES } from '../assets.ts';
 import {
   ArrowRight,
@@ -62,6 +63,8 @@ export const HomePage: React.FC<HomePageProps> = ({
 
   return (
     <div className="space-y-0">
+      <HeroVideo />
+
       {/* 3. HERO SECTION */}
       <section className="relative overflow-hidden bg-[#F7F8F5] pt-8 pb-16 lg:pt-14 lg:pb-24 border-b border-[#17211C]/10">
         {/* Subtle architectural grid pattern background */}
