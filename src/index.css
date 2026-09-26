@@ -78,12 +78,14 @@
   height: max(100cqh, 56.25cqw);
   transform: translate(-50%, -50%);
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 300ms ease;
 }
 
 .hero-video__player--playing {
   opacity: 1;
+  visibility: visible;
+  transition: opacity 300ms ease;
 }
 
 .hero-video__player iframe {
